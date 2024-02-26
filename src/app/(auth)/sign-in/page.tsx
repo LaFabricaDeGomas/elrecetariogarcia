@@ -19,7 +19,7 @@ export default async function SignIn() {
   const providers = await getProviders()
 
   return (
-    <main className="min-h-screen relative flex items-center justify-center h-full bg-center bg-circle-grid dark:bg-circle-grid-dark">
+    <main className="min-h-screen relative flex items-center justify-center h-full bg-center bg-circle-grid bg-cover bg-no-repeat dark:bg-circle-grid-dark">
       <div className="relative bottom-16">
         <Logo
           aria-label="Beam"
