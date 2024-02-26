@@ -4,9 +4,11 @@ import {
   getServerSession,
   type DefaultSession,
   type NextAuthOptions,
+  Profile,
 } from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
 import OktaProvider from 'next-auth/providers/okta'
+import GoogleProvider, { GoogleProfile } from "next-auth/providers/google"
 
 import { env } from '~/env.js'
 import { db } from '~/server/db'
@@ -36,11 +38,44 @@ declare module 'next-auth' {
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
+    async signIn({ user, account, profile }) {
+      if (
+        // @ts-ignore
+        !env.NEXTAUTH_ALLOWED_MAILS.includes(
+          // @ts-ignore
+          profile.email
+        )
+      ) {
+        return false
+      }
+
+      function instanceOfGoogle(object: Profile): object is GoogleProfile {
+        return true
+      }
+
+      if (account === null) {
+        return false
+      }
+
+      if (profile === undefined) {
+        return false
+      }
+
+      if (!instanceOfGoogle(profile)) {
+        return false
+      }
+
+      if (account.provider === 'google') {
+        return !!profile.email_verified
+      }
+
+      return true
+    },
     session: ({ session, user }) => ({
       ...session,
       user: {
         ...session.user,
-        id: user.id,
+        id: user.id
       },
     }),
   },
@@ -86,11 +121,19 @@ export const authOptions: NextAuthOptions = {
               issuer: env.OKTA_ISSUER,
             }),
           ]
+        : env.AUTH_PROVIDER === 'google'
+        ? [
+            GoogleProvider({
+              clientId: env.GOOGLE_CLIENT_ID!,
+              clientSecret: env.GOOGLE_CLIENT_SECRET!,
+            }),
+          ]
         : [],
   pages: {
     signIn: '/sign-in',
     signOut: '/sign-in',
   },
+  
 }
 
 /**
