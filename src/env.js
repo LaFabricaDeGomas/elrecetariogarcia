@@ -7,7 +7,7 @@ export const env = createEnv({
    * isn't built with invalid env vars.
    */
   server: {
-    AUTH_PROVIDER: z.enum(['github', 'okta']),
+    AUTH_PROVIDER: z.enum(['github', 'okta', 'google']),
     DATABASE_URL: z
       .string()
       .url()
@@ -19,6 +19,10 @@ export const env = createEnv({
       process.env.AUTH_PROVIDER === 'github' ? z.string() : z.undefined(),
     GITHUB_SECRET:
       process.env.AUTH_PROVIDER === 'github' ? z.string() : z.undefined(),
+    GOOGLE_CLIENT_ID:
+      process.env.AUTH_PROVIDER === 'google' ? z.string() : z.undefined(),
+    GOOGLE_CLIENT_SECRET:
+      process.env.AUTH_PROVIDER === 'google' ? z.string() : z.undefined(),
     GITHUB_ALLOWED_ORG:
       process.env.AUTH_PROVIDER === 'github' ? z.string() : z.undefined(),
     NODE_ENV: z
@@ -87,6 +91,8 @@ export const env = createEnv({
     CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
     ENABLE_SLACK_POSTING: process.env.ENABLE_SLACK_POSTING,
     SLACK_WEBHOOK_URL: process.env.SLACK_WEBHOOK_URL,
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
