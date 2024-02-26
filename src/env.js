@@ -23,6 +23,8 @@ export const env = createEnv({
       process.env.AUTH_PROVIDER === 'google' ? z.string() : z.undefined(),
     GOOGLE_CLIENT_SECRET:
       process.env.AUTH_PROVIDER === 'google' ? z.string() : z.undefined(),
+    NEXTAUTH_ALLOWED_MAILS: z
+      .string(),
     GITHUB_ALLOWED_ORG:
       process.env.AUTH_PROVIDER === 'github' ? z.string() : z.undefined(),
     NODE_ENV: z
@@ -93,6 +95,7 @@ export const env = createEnv({
     SLACK_WEBHOOK_URL: process.env.SLACK_WEBHOOK_URL,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+    NEXTAUTH_ALLOWED_MAILS: process.env.NEXTAUTH_ALLOWED_MAILS
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

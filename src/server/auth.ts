@@ -40,10 +40,8 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async signIn({ user, account, profile }) {
       if (
-        // @ts-ignore
         !env.NEXTAUTH_ALLOWED_MAILS.includes(
-          // @ts-ignore
-          profile.email
+          profile?.email
         )
       ) {
         return false
