@@ -11,6 +11,7 @@
     "generate:svg": "npx @svgr/cli --no-index --out-dir src/app/_svg -- src/svg",
     "postinstall": "prisma generate",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "start": "next start"
   },
   "dependencies": {

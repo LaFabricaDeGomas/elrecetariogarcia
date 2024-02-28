@@ -4,11 +4,11 @@ import {
   getServerSession,
   type DefaultSession,
   type NextAuthOptions,
-  Profile,
+  type Profile,
 } from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
 import OktaProvider from 'next-auth/providers/okta'
-import GoogleProvider, { GoogleProfile } from "next-auth/providers/google"
+import GoogleProvider, { type GoogleProfile } from "next-auth/providers/google"
 
 import { env } from '~/env.js'
 import { db } from '~/server/db'

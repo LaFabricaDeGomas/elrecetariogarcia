@@ -115,8 +115,8 @@ export default {
         'yellow-light': 'var(--bg-yellow-light)',
       },
       backgroundImage: {
-        'circle-grid': "url('/images/background.webp')",
-        'circle-grid-dark': "url('/images/background.webp')",
+        'circle-grid': "url('/images/bg-circlegrid.svg')",
+        'circle-grid-dark': "url('/images/bg-circlegrid-dark.svg')",
       },
       borderColor: {
         DEFAULT: 'var(--border-primary)',
