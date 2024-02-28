@@ -4,7 +4,6 @@ import { redirect } from 'next/navigation'
 import Logo from '~/app/_svg/logo'
 import { getServerAuthSession } from '~/server/auth'
 import { SignInButtons } from './_components/sign-in-buttons'
-import { useTheme } from 'next-themes'
 
 export const metadata: Metadata = {
   title: 'Sign In - Beam',

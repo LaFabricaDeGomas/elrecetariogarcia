@@ -14,7 +14,6 @@ export default function NewPost() {
 
       <div className="mt-6">
         <PostForm
-          isSubmitting={false}
           defaultValues={{
             title: '',
             content: '',

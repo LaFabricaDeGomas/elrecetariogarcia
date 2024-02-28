@@ -18,13 +18,11 @@ type FormData = {
 
 type PostFormProps = {
   defaultValues?: FormData
-  isSubmitting?: boolean
   backTo: string
 }
 
 export function PostForm({
   defaultValues,
-  isSubmitting,
   backTo,
 }: PostFormProps) {
   const { control, register, getValues, formState, reset, handleSubmit } =
@@ -77,7 +75,7 @@ export function PostForm({
         <div className="flex gap-4">
           <Button
             type="submit"
-            isLoading={isSubmitting}
+            isLoading={addPostMutation.isLoading}
             loadingChildren={`${defaultValues ? 'Saving' : 'Publishing'}`}
           >
             {defaultValues?.title ? 'Save' : 'Publish'}
@@ -86,7 +84,7 @@ export function PostForm({
             Cancel
           </Button>
         </div>
-        {!isSubmitting && (
+        {!addPostMutation.isLoading && (
           <a
             href="https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax"
             target="_blank"
