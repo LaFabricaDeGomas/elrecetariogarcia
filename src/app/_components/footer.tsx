@@ -10,12 +10,12 @@ export const Footer = () => {
         <span>
           by{' '}
           <a
-            href="https://planetscale.com"
+            href="https://github.com/garciasdos"
             target="_blank"
             rel="noreferrer"
             className="transition-colors text-secondary hover:text-primary"
           >
-            PlanetScale
+            Diego
           </a>
         </span>
       </div>
